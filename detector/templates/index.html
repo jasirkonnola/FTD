@@ -1,0 +1,34 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hate Speech Detector</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light p-5">
+    <div class="container text-center" style="max-width: 650px;">
+        <h2 class="mb-4"> Hate Speech Detection System</h2>
+        
+        <form method="POST" class="card p-4 shadow-sm mb-4">
+            {% csrf_token %}
+            <textarea name="tweet_text" class="form-control mb-3" rows="3" placeholder="Enter tweet or text here..." required>{{ user_input }}</textarea>
+            <button type="submit" class="btn btn-primary w-100">Analyze Text</button>
+        </form>
+
+        {% if result %}
+        <div class="alert alert-info shadow-sm">
+            <h4>Prediction: <strong>{{ result }}</strong></h4>
+            <p class="mb-0">Confidence: {{ confidence }}%</p>
+        </div>
+        {% endif %}
+
+        <!-- Confusion Matrix Heatmap Section -->
+        <div class="card p-3 mt-4 shadow-sm">
+            <h5>Model Performance (Confusion Matrix)</h5>
+            <!-- മാറിയ ഇമേജ് പാത്ത് ഇവിടെയാണ് -->
+            <img src="{% static 'images/confusion_matrix.png' %}" class="img-fluid rounded border mt-2" alt="Confusion Matrix Heatmap">
+        </div>
+    </div>
+</body>
+</html>
