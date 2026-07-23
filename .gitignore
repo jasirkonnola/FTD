@@ -15,7 +15,6 @@ staticfiles/
 *.log
 
 # Machine Learning Models & Heavy Artifacts
-# (Git-ൽ ലാർജ് ഫയലുകൾ കയറുന്നത് തടയാൻ)
 *.h5
 *.pkl
 *.onnx
